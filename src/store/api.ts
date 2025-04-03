@@ -1,6 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export interface Job {
+  company: string;
+  type: string;
+  location: string;
+  experience: string;
+  salary: string;
+  requirements: any;
+  responsibilities: any;
+  isApplied: any;
   id: number;
   title: string;
   description: string;
