@@ -65,12 +65,13 @@ export interface UserRegistrationData {
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ 
-    baseUrl: process.env.NEXT_PUBLIC_API_URL || 'http://192.168.1.50:8000'
+    baseUrl: process.env.NEXT_PUBLIC_API_URL || 'http://192.168.1.50:443'
   }),
   endpoints: (builder) => ({
     getJobs: builder.query<[], void>({
       query: () => {
         const token = localStorage.getItem('token');
+        console.log('token', token)
         return {
           url: 'jobs',
           headers: {
@@ -84,7 +85,7 @@ export const api = createApi({
       query: (id) => {
         const token = localStorage.getItem('token');
         return {
-          url: `jobs/${id}`,
+          url: `/jobs/${id}`,
           headers: {
             Authorization: `Bearer ${token}`,
           },
