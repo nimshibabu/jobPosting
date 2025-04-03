@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { useEffect } from 'react';
@@ -7,7 +6,7 @@ import { useGetJobsQuery } from '@/store/api';
 import Link from 'next/link';
 import { isAuthenticated, getUserRole } from '@/utils/auth';
 
-interface Job {
+export interface Job {
   id: number;
   title: string;
   description: string;
@@ -38,7 +37,7 @@ const JobCard = ({ job }: { job: Job }) =>{
     <div className="mt-4">
       <h4 className="text-sm font-medium text-gray-900">Required Skills:</h4>
       <div className="mt-2 flex flex-wrap gap-2">
-        {job?.skills && JSON.parse(job?.skills as any).map((skill: string) => (
+        {job?.skills && JSON.parse(job?.skills as unknown as string).map((skill: string) => (
           <span
             key={skill}
             className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800"
@@ -166,8 +165,8 @@ export default function RecruiterDashboardPage() {
             {isLoading ? (
               Array(3).fill(0).map((_, i) => <LoadingSkeleton key={i} />)
             ) : (
-              data?.map((job) => (
-                <JobCard key={job.id} job={job} />
+              data?.map((job:Job) => (
+                <JobCard key={job.id} job={job as Job} />
               ))
             )}
           </div>
