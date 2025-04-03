@@ -83,7 +83,7 @@ export default function PostJobPage() {
       });
 
       router.push('/recruiter-dashboard');
-    } catch (error) {
+    } catch (_error) {
       toast.error('Failed to post job. Please try again.', {
         duration: 3000,
         position: 'top-center',

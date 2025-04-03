@@ -70,7 +70,7 @@ export default function LoginPage() {
       } else {
         router.push('/');
       }
-    } catch (error) {
+    } catch (_error) {
       setError('Invalid email or password');
       toast.error('Invalid email or password', {
         duration: 3000,

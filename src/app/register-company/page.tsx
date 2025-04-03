@@ -65,7 +65,7 @@ export default function RegisterCompanyPage() {
       setTimeout(() => {
         router.push('/login');
       }, 15000);
-    } catch (err) {
+    } catch (_err) {
       setError('Failed to register company. Please try again.');
       toast.error('Failed to register company. Please try again.', {
         duration: 5000,

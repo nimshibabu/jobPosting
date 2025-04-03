@@ -10,7 +10,7 @@ export default function JobDetailsPage({ params }: { params: { id: string } }) {
   const [applicationError, setApplicationError] = useState<string>('');
   const [applicationSuccess, setApplicationSuccess] = useState(false);
 
-  const { data: job, isLoading, error } = useGetJobByIdQuery(Number(params.id));
+  const { data: job, isLoading, error } = useGetJobByIdQuery(params.id as string);
   const [applyForJob] = useApplyForJobMutation();
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function JobDetailsPage({ params }: { params: { id: string } }) {
       await applyForJob({ jobId: Number(params.id), resume }).unwrap();
       setApplicationSuccess(true);
       setApplicationError('');
-    } catch (err) {
+    } catch (_err) {
       setApplicationError('Failed to submit application. Please try again.');
     }
   };
@@ -131,7 +131,7 @@ export default function JobDetailsPage({ params }: { params: { id: string } }) {
               <h3 className="text-lg leading-6 font-medium text-gray-900">Requirements</h3>
               <div className="mt-2 max-w-xl text-sm text-gray-500">
                 <ul className="list-disc pl-5 space-y-1">
-                  {job.requirements.map((req, index) => (
+                  {job.requirements.map((req: string | number | bigint | boolean   | null | undefined, index: string | null | undefined) => (
                     <li key={index}>{req}</li>
                   ))}
                 </ul>
@@ -144,7 +144,7 @@ export default function JobDetailsPage({ params }: { params: { id: string } }) {
               <h3 className="text-lg leading-6 font-medium text-gray-900">Responsibilities</h3>
               <div className="mt-2 max-w-xl text-sm text-gray-500">
                 <ul className="list-disc pl-5 space-y-1">
-                  {job.responsibilities.map((resp, index) => (
+                  {job.responsibilities.map((resp: string | number | bigint | boolean   | null | undefined, index: string | null | undefined) => (
                     <li key={index}>{resp}</li>
                   ))}
                 </ul>

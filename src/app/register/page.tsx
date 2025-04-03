@@ -61,7 +61,7 @@ export default function RegisterPage() {
       });
 
       router.push('/login');
-    } catch (error) {
+    } catch (_error) {
       setError('Registration failed. Please try again.');
       toast.error('Registration failed. Please try again.', {
         duration: 3000,
